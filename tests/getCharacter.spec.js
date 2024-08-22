@@ -42,14 +42,49 @@ Retorno:
 */
 
 describe('9 - Implemente os casos de teste da função `getCharacter`', () => {
-  it('Verifica se a função `getCharacter` retorna o objeto do personagem corretamente.', () => {
-    fail('Teste vazio!');
-    // ESCREVA SEUS TESTES ABAIXO:
-    // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined.
-    // Teste se a função retorna o objeto correto para o parâmetro 'Arya',
-    // Teste se a função retorna o objeto correto para o parâmetro 'Brienne',
-    // Teste se a função retorna o objeto correto para o parâmetro 'Melissandre',
-    // Teste se o parâmetro não é Case Sensitive, ou seja, independente de conter letras maiúsculas ou minúsculas retorna o mesmo objeto relativo a ele.
-    // Teste se ao passar um nome que não está na tabela, a função retorna undefined.
+  it('Verifica se a função `getCharacter` retorna undefined quando nenhum parâmetro é passado.', () => {
+    expect(getCharacter()).toBeUndefined();
+  });
+
+  it('Verifica se a função retorna o objeto correto para o parâmetro "Arya".', () => {
+    const expected = {
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.'],
+    };
+    expect(getCharacter('Arya')).toEqual(expected);
+  });
+
+  it('Verifica se a função retorna o objeto correto para o parâmetro "Brienne".', () => {
+    const expected = {
+      name: 'Brienne Tarth',
+      class: 'Knight',
+      phrases: ['Im No Lady, Your Grace.', 'I, Brienne Of Tarth, Sentence You To Die.'],
+    };
+    expect(getCharacter('Brienne')).toEqual(expected);
+  });
+
+  it('Verifica se a função retorna o objeto correto para o parâmetro "Melissandre".', () => {
+    const expected = {
+      name: 'Melissandre',
+      class: 'Necromancer',
+      phrases: ['Death By Fire Is The Purest Death.', 'For The Night Is Dark And Full Of Terrors.'],
+    };
+    expect(getCharacter('Melissandre')).toEqual(expected);
+  });
+
+  it('Verifica se a função é case insensitive para "arya".', () => {
+    const expected = {
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.'],
+    };
+    expect(getCharacter('arya')).toEqual(expected);
+    expect(getCharacter('ArYa')).toEqual(expected);
+    expect(getCharacter('ARYA')).toEqual(expected);
+  });
+
+  it('Verifica se a função retorna undefined para um nome que não está na tabela.', () => {
+    expect(getCharacter('Unknown')).toBeUndefined();
   });
 });
