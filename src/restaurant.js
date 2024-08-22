@@ -117,7 +117,7 @@ const createMenu = (menu) => {
       });
 
       return total * 1.1; 
-    }
+    },
   };
 };
 
